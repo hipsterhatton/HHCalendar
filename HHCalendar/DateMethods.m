@@ -10,22 +10,6 @@
 
 @implementation DateMethods
 
-+ (int)getNumberOfDaysInMonth:(int)day :(int)month :(int)year
-{
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [cal setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    comps = [cal components:NSWeekdayCalendarUnit fromDate:[cal dateFromComponents:comps]];
-    
-    [comps setDay:day];
-    [comps setMonth:month];
-    [comps setYear:year];
-    
-    NSRange range = [cal rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:[cal dateFromComponents:comps]];
-    //    NSLog(@"Date Is: %@ Number Of Days In Month Are: %d", [cal dateFromComponents:comps], (int)range.length);
-    return (int)range.length;
-}
-
 + (int)getDayOfWeek:(int)day :(int)month :(int)year
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -47,8 +31,23 @@
 
 
 
++ (int)getNumberOfDaysInMonth:(int)month :(int)year
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [cal setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    comps = [cal components:NSWeekdayCalendarUnit fromDate:[cal dateFromComponents:comps]];
+    
+    [comps setDay:1];
+    [comps setMonth:month];
+    [comps setYear:year];
+    
+    NSRange range = [cal rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:[cal dateFromComponents:comps]];
+    //    NSLog(@"Date Is: %@ Number Of Days In Month Are: %d", [cal dateFromComponents:comps], (int)range.length);
+    return (int)range.length;
+}
 
-+ (NSMutableArray *)getDaysFrontOfMonth:(int)firstWeekdayOfMonth :(int)currentMonth :(int)currentYear
++ (NSMutableArray *)getNumberOfDaysPreviousMonth:(int)firstWeekdayOfMonth :(int)currentMonth :(int)currentYear
 {
     NSMutableArray *datesInFront = [[NSMutableArray alloc] init];
     
@@ -59,8 +58,7 @@
             currentMonth=12;
             currentYear--;
         }
-        int numberOfDaysInPreviousMonth = [self getNumberOfDaysInMonth:1 :currentMonth :currentYear];
-        //Then need to do loop backwards, counting down from here until we reach 0/1 on the weekdays :D
+        int numberOfDaysInPreviousMonth = [self getNumberOfDaysInMonth:currentMonth :currentYear];
         while (firstWeekdayOfMonth>1) {
             [datesInFront insertObject:[NSNumber numberWithInt:numberOfDaysInPreviousMonth--] atIndex:0];
             firstWeekdayOfMonth--;
@@ -70,7 +68,7 @@
     return datesInFront;
 }
 
-+ (NSMutableArray *)getDaysBackOfMonth:(int)lastWeekdayOfMonth
++ (NSMutableArray *)getNumberOfDaysNextMonth:(int)lastWeekdayOfMonth
 {
     NSMutableArray *datesInBack = [[NSMutableArray alloc] init];
     int temp = 1;
@@ -181,7 +179,7 @@
     }
 }
 
-+ (NSArray *)getMonthAndYearNumbers:(NSDate *)date
++ (NSArray *)getMonthAndYear:(NSDate *)date
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *comps = [cal components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:[NSDate date]];
@@ -189,7 +187,7 @@
              [NSNumber numberWithInteger:[comps day]],
              [NSNumber numberWithInteger:[comps month]],
              [NSNumber numberWithInteger:[comps year]]
-             ];
+           ];
 }
 
 @end

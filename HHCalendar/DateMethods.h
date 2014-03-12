@@ -10,14 +10,14 @@
 
 @interface DateMethods : NSObject
 
-+ (int)getNumberOfDaysInMonth:(int)day :(int)month :(int)year;
 + (int)getDayOfWeek:(int)day :(int)month :(int)year;
 
-+ (NSMutableArray *)getDaysFrontOfMonth:(int)firstWeekdayOfMonth :(int)currentMonth :(int)currentYear;
-+ (NSMutableArray *)getDaysBackOfMonth:(int)lastWeekdayOfMonth;
++ (int)getNumberOfDaysInMonth:(int)month :(int)year;
++ (NSMutableArray *)getNumberOfDaysPreviousMonth:(int)firstWeekdayOfMonth :(int)currentMonth :(int)currentYear;
++ (NSMutableArray *)getNumberOfDaysNextMonth:(int)lastWeekdayOfMonth;
 
 + (NSString *)getDayName:(int)dayNumber;
 + (NSString *)getMonthName:(int)monthNumber;
-+ (NSMutableArray *)getMonthAndYearNumbers:(NSDate *)date;
++ (NSArray *)getMonthAndYear:(NSDate *)date;
 
 @end

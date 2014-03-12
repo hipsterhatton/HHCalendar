@@ -124,8 +124,8 @@
 		DC72357418D0A89300EF5AD9 /* HHCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				DC7235A318D0A8A100EF5AD9 /* Calendar Data */,
 				DC7235A218D0A89B00EF5AD9 /* Calendar View */,
+				DC7235A318D0A8A100EF5AD9 /* Calendar Data */,
 				DC72358018D0A89300EF5AD9 /* AppDelegate.h */,
 				DC72358118D0A89300EF5AD9 /* AppDelegate.m */,
 				DC72358318D0A89300EF5AD9 /* MainMenu.xib */,

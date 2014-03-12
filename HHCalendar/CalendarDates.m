@@ -19,29 +19,42 @@
     return self;
 }
 
+
+
+
 - (void)getMonth
 {
-    //General method to get create all the "days" d/s's for the month and get the name of the month
+    //General method used to create all the "Calendar Days" for each month
     
+    //Wipe all the current days
     [_days removeAllObjects];
+    
+    //Get the day of the week for the 1st of then month (used when calculating what day of the week the day is)
     int dayOfWeek = [DateMethods getDayOfWeek:1 :_monthNumber :_yearNumber];
-    int numberOfDays = [DateMethods getNumberOfDaysInMonth:_dayNumber :_monthNumber :_yearNumber];
+    
+    //Get the number of days in the month
+    int numberOfDays = [DateMethods getNumberOfDaysInMonth:_monthNumber :_yearNumber];
+    
+    //Loop aroudn and create these "Calendar Days" and add them to the array
     for (int a = 1; a < numberOfDays+1; a++) {
         if (dayOfWeek==8)
             dayOfWeek=1;
         [_days addObject:[[CalendarDay alloc] initWithDay:a :dayOfWeek]];
         dayOfWeek++;
     }
+    
+    //Set the month name
     _monthName = [DateMethods getMonthName:_monthNumber];
     
-    _daysBefore = [DateMethods getDaysFrontOfMonth:6 :03 :2014];
-    _daysAfter = [DateMethods getDaysBackOfMonth:1];
+    // * Optional * these gets the days just before and after this month (used to "fill" in the calendar in the UI)
+    _daysBefore = [DateMethods getNumberOfDaysPreviousMonth:[[self getFirstDayOfMonth] getDayOfWeekNumber] :_monthNumber :_yearNumber];
+    _daysAfter = [DateMethods getNumberOfDaysNextMonth:[[self getLastDayOfMonth] getDayOfWeekNumber]];
 }
 
 - (void)currentMonth
 {
     //Get the details of the month using the system date (day, month, year)
-    NSArray *currentMonth = [DateMethods getMonthAndYearNumbers:[NSDate date]];
+    NSArray *currentMonth = [DateMethods getMonthAndYear:[NSDate date]];
     
     _dayNumber = (int)[currentMonth[0] integerValue];
     _monthNumber = (int)[currentMonth[1]  integerValue];
@@ -51,6 +64,8 @@
 
 - (void)previousMonth
 {
+    //Get the details of the previous month
+    
     //Loop around code: if at the 1st month of year, go to 12th month + previous year
     if (_monthNumber==1) {_monthNumber = 12; _yearNumber--;} else { _monthNumber--; }
     //Set the day of the month to 1
@@ -60,11 +75,26 @@
 
 - (void)nextMonth
 {
+    //Get the details of the next month
+    
     //Loop around code: if at the 12th month of year, go to 12st month + next year
     if (_monthNumber==12) { _monthNumber = 1; _yearNumber++; } else { _monthNumber++; }
     //Set the day of the month to 1
     _dayNumber = 1;
     [self getMonth];
+}
+
+
+
+
+- (CalendarDay *)getFirstDayOfMonth
+{
+    return [_days objectAtIndex:0];
+}
+
+- (CalendarDay *)getLastDayOfMonth
+{
+    return [_days objectAtIndex:[_days count]-1];
 }
 
 - (CalendarDay *)getDayOfMonth:(int)x
