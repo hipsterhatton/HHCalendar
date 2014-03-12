@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC3E99A818D0B2FA00B89784 /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E99A718D0B2FA00B89784 /* CalendarView.m */; };
 		DC72356F18D0A89300EF5AD9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC72356E18D0A89300EF5AD9 /* Cocoa.framework */; };
 		DC72357918D0A89300EF5AD9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC72357718D0A89300EF5AD9 /* InfoPlist.strings */; };
 		DC72357B18D0A89300EF5AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC72357A18D0A89300EF5AD9 /* main.m */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC3E99A618D0B2FA00B89784 /* CalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarView.h; sourceTree = "<group>"; };
+		DC3E99A718D0B2FA00B89784 /* CalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarView.m; sourceTree = "<group>"; };
 		DC72356B18D0A89300EF5AD9 /* HHCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HHCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC72356E18D0A89300EF5AD9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DC72357118D0A89300EF5AD9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -168,6 +171,8 @@
 		DC7235A218D0A89B00EF5AD9 /* Calendar View */ = {
 			isa = PBXGroup;
 			children = (
+				DC3E99A618D0B2FA00B89784 /* CalendarView.h */,
+				DC3E99A718D0B2FA00B89784 /* CalendarView.m */,
 			);
 			name = "Calendar View";
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC3E99A818D0B2FA00B89784 /* CalendarView.m in Sources */,
 				DC7235AD18D0A8D800EF5AD9 /* CalendarDay.m in Sources */,
 				DC7235B018D0A8E000EF5AD9 /* DateMethods.m in Sources */,
 				DC72358218D0A89300EF5AD9 /* AppDelegate.m in Sources */,
@@ -522,6 +528,7 @@
 				DC72359E18D0A89300EF5AD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DC72359F18D0A89300EF5AD9 /* Build configuration list for PBXNativeTarget "HHCalendarTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +537,7 @@
 				DC7235A118D0A89300EF5AD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

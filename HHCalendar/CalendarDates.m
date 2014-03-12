@@ -54,11 +54,15 @@
 - (void)currentMonth
 {
     //Get the details of the month using the system date (day, month, year)
+    
+    //This method gets the current day/month/year in an array format so that we can easily extract what we need
     NSArray *currentMonth = [DateMethods getMonthAndYear:[NSDate date]];
     
     _dayNumber = (int)[currentMonth[0] integerValue];
     _monthNumber = (int)[currentMonth[1]  integerValue];
     _yearNumber = (int)[currentMonth[2]  integerValue];
+    
+    //Call the "getMonth" method so that I can create the days for this month
     [self getMonth];
 }
 
